@@ -1,0 +1,11 @@
+.page-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px; /* Espaçamento interno do rodapé (opcional) */
+  background-color: #50b0ff
+}
+
+.footer-copyright{
+  background-color: #3f9ce7
+}
