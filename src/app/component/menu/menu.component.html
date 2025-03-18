@@ -1,20 +1,23 @@
-<nav>
+<nav >
   <div class="nav-wrapper">
-    <a href="#!" class="brand-logo">Pac 2025</a>
+    <a href="#!" class="brand-logo">Gerenciamento de Documentos</a>
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <div  class="menu-button" *ngIf="isAuthenticated">
     <ul class="right hide-on-med-and-down">
-      <li><a href="home-page.component.html">Home</a></li>
-      <li><a href="cadastro.html">Cadastro</a></li>
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/register-doc">Cadastro</a></li>
       <li><a href="listagem.html">Listagem</a></li>
       <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="#" (click)="logout()">Sair</a></li>
     </ul>
+  </div>
   </div>
 </nav>
 
-
-<ul class="sidenav" id="mobile-demo" #mobile>
-  <li><a href="home-page.component.html">Home</a></li>
-  <li><a href="cadastro.html">Cadastro</a></li>
+<ul class="sidenav" id="mobile-demo" #mobile *ngIf="isAuthenticated">
+  <li><a routerLink="/">Home</a></li>
+  <li><a routerLink="/register-doc">Cadastro</a></li>
   <li><a href="listagem.html">Listagem</a></li>
   <li><a href="sobre.html">Sobre</a></li>
+  <li><a href="#" (click)="logout()">Sair</a></li>
 </ul>

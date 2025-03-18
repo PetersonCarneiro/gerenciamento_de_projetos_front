@@ -1,0 +1,47 @@
+.doc-container {
+  display:block;
+  justify-content:center;
+  align-items: center;
+  padding: 20px;
+  text-align: left;
+}
+
+.doc-content {
+  background: #f5f5f5;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.item-content {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.doc-header {
+  display: flex;
+  justify-content: space-between; /* Título à esquerda, botões à direita */
+  align-items: flex-end; /* Alinha na mesma linha verticalmente */
+  padding: 10px;
+}
+
+.doc-buttons {
+  display: flex;
+  gap: 10px; /* Espaçamento entre os botões */
+}
+
+.doc-title{
+  margin: 0;
+}
+
+
+.collapsible-header a {
+  margin-left: auto; /* Empurra o botão para a direita */
+}
+.collapsible-header {
+  display: flex;
+  justify-content: space-between; /* Título à esquerda, botão à direita */
+  align-items: center; /* Alinha o botão e título na mesma linha */
+}

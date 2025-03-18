@@ -1,18 +1,24 @@
 <div class="login-container">
   <div class="login-content">
     <h1>Login</h1>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="first_name" type="text" class="validate">
-        <label for="first_name">First Name</label>
+    <form (ngSubmit)="onLoginSubmit()">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="login" type="text" class="validate" [(ngModel)]="login" name="login" required>
+          <label for="login">Login</label>
+        </div>
       </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="password" type="password" class="validate">
-        <label for="password">Password</label>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate" [(ngModel)]="password" name="password" required>
+          <label for="password">Password</label>
+        </div>
       </div>
-    </div>
-    <a routerLink="/login" class="btn waves-effect waves-light blue darken-3">Login</a>
-    <p>Não tem uma conta? <a a routerLink="/register" class="blue-text">Cadastre-se aqui</a></p>
+      <button type="submit" class="btn waves-effect waves-light blue darken-3">Login</button>
+    </form>
+
+    <p>Não tem uma conta? <a routerLink="/register" class="blue-text">Cadastre-se aqui</a></p>
+
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </div>

@@ -8,6 +8,9 @@ import { FooterComponent } from './component/footer/footer.component';
 import { HomePageComponent } from './component/home-page/home-page.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
+import { RegisterDocPageComponent } from './component/register-doc-page/register-doc-page.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,14 @@ import { RegisterComponent } from './component/register/register.component';
     FooterComponent,
     HomePageComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RegisterDocPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

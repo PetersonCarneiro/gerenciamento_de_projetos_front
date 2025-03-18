@@ -1,32 +1,44 @@
 <div class="row">
-  <form class="col s12">
+
+  <form class="col s12" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="input-field col s6">
-        <input id="first_name" type="text" class="validate">
+        <input id="first_name" type="text" class="validate" [(ngModel)]="formData.firstName" name="firstName">
         <label for="first_name">First Name</label>
       </div>
       <div class="input-field col s6">
-        <input id="last_name" type="text" class="validate">
+        <input id="last_name" type="text" class="validate" [(ngModel)]="formData.lastName" name="lastName">
         <label for="last_name">Last Name</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input id="password" type="password" class="validate">
+        <input id="login" type="text" class="validate" [(ngModel)]="formData.login" name="login">
+        <label for="login">Email</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="password" type="password" class="validate" [(ngModel)]="formData.password" name="password">
         <label for="password">Password</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input id="confirmPassword" type="Password" class="validate">
+        <input id="confirmPassword" type="password" class="validate" [(ngModel)]="formData.confirmPassword" name="confirmPassword">
         <label for="confirmPassword">Confirm Password</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input id="email" type="email" class="validate">
-        <label for="email">Email</label>
+        <input id="userType" type="text" class="validate" [(ngModel)]="formData.userType" name="userType">
+        <label for="userType">Tipo</label>
       </div>
     </div>
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+    <button type="submit" class="btn waves-effect waves-light blue darken-3">Cadastrar</button>
   </form>
+
 </div>
