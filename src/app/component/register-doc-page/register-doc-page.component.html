@@ -8,78 +8,78 @@
       </div>
     </div>
 
-    <!-- Formulário de Campos - usando grid para organizar lado a lado -->
-    <div class="row">
-      <div class="input-field col s12 m4 l3">
+    <!-- Formulário de Campos -->
+    <div class="row center-fields">
+      <div class="input-field col s12 m4">
         <input id="cod" type="text" class="validate" [(ngModel)]="formData.cod" name="cod">
         <label for="cod">Código</label>
       </div>
-      <div class="input-field col s12 m4 l3">
+      <div class="input-field col s12 m4">
         <input id="competentUnit" type="text" class="validate" [(ngModel)]="formData.competentUnit" name="competentUnit">
         <label for="competentUnit">Tipo</label>
       </div>
-      <div class="input-field col s12 m4 l3">
+      <div class="input-field col s12 m4">
         <input id="requestingUnit" type="text" class="validate" [(ngModel)]="formData.requestingUnit" name="requestingUnit">
         <label for="requestingUnit">Unidade Requerente</label>
       </div>
     </div>
 
-    <div class="row">
-      <div class="input-field col s12 m4 l3">
+    <div class="row center-fields">
+      <div class="input-field col s12 m4">
         <input id="investiment" type="text" class="validate" [(ngModel)]="formData.investiment" name="investiment">
         <label for="investiment">Investimento</label>
       </div>
-      <div class="input-field col s12 m4 l3">
+      <div class="input-field col s12 m4">
         <input id="codPdm" type="text" class="validate" [(ngModel)]="formData.codPdm" name="codPdm">
         <label for="codPdm">Código PDM</label>
       </div>
-      <div class="input-field col s12 m4 l3">
+      <div class="input-field col s12 m4">
         <input id="catmat" type="text" class="validate" [(ngModel)]="formData.catmat" name="catmat">
         <label for="catmat">Categoria Matéria</label>
       </div>
     </div>
 
-    <div class="row">
-      <div class="input-field col s12 m4 l3">
+    <!-- Continuando com os demais campos -->
+
+    <div class="row center-fields">
+      <div class="input-field col s12 m4">
         <input id="catser" type="text" class="validate" [(ngModel)]="formData.catser" name="catser">
         <label for="catser">Categoria Serviço</label>
       </div>
-      <div class="input-field col s12 m4 l3">
+      <div class="input-field col s12 m4">
         <input id="codSubClassCnae" type="text" class="validate" [(ngModel)]="formData.codSubClassCnae" name="codSubClassCnae">
         <label for="codSubClassCnae">Código Subclasse CNAE</label>
       </div>
-      <div class="input-field col s12 m4 l3">
+      <div class="input-field col s12 m4">
         <input id="descriptionCnae" type="text" class="validate" [(ngModel)]="formData.descriptionCnae" name="descriptionCnae">
         <label for="descriptionCnae">Descrição CNAE</label>
       </div>
     </div>
 
-    <div class="row">
-      <div class="input-field col s12 m4 l3">
+    <div class="row center-fields">
+      <div class="input-field col s12 m4">
         <input id="object" type="text" class="validate" [(ngModel)]="formData.object" name="object">
         <label for="object">Objeto</label>
       </div>
-      <div class="input-field col s12 m4 l3">
+      <div class="input-field col s12 m4">
         <input id="numberSei" type="text" class="validate" [(ngModel)]="formData.numberSei" name="numberSei">
         <label for="numberSei">Número SEI</label>
       </div>
-      <div class="input-field col s12 m4 l3">
-        <input id="userId" type="text" class="validate" [(ngModel)]="formData.user.id" name="user.id">
-        <label for="userId">ID do Usuário</label>
-      </div>
+
     </div>
+
+
     <div class="container">
       <ul #collapsible class="collapsible">
-        <li *ngFor="let item of formData.items; let i = index">
+        <li *ngFor="let item of formData.item; let i = index">
           <div class="collapsible-header">
             Item {{i + 1}}
-            <!-- Botão de Remover alinhado à direita -->
             <a href="javascript:void(0);" class="btn-flat right" (click)="removeItem(i)">
               <i class="material-icons">close</i>
             </a>
           </div>
           <div class="collapsible-body">
-            <div class="row">
+            <div class="row center-fields">
               <div class="input-field col s6">
                 <input id="item_{{i}}" type="text" [(ngModel)]="item.item" name="item_{{i}}">
                 <label for="item_{{i}}">Item</label>
@@ -89,29 +89,32 @@
                 <label for="quantity_{{i}}">Quantidade</label>
               </div>
             </div>
-            <div class="row">
+            <div class="row center-fields">
               <div class="input-field col s12">
                 <input id="justification_{{i}}" type="text" [(ngModel)]="item.justification" name="justification_{{i}}">
                 <label for="justification_{{i}}">Justificativa</label>
               </div>
             </div>
-            <div class="input-field col s4">
-              <input id="budgetHeading_{{i}}" type="text" class="validate" [(ngModel)]="item.budgetHeading" name="budgetHeading_{{i}}">
-              <label for="budgetHeading_{{i}}">Rubrica Orçamentária</label>
-            </div>
-            <div class="input-field col s4">
-              <input id="priorityDegree_{{i}}" type="text" class="validate" [(ngModel)]="item.priorityDegree" name="priorityDegree_{{i}}">
-              <label for="priorityDegree_{{i}}">Grau de Prioridade</label>
-            </div>
-            <div class="input-field col s4">
-              <input id="contractNumber_{{i}}" type="text" class="validate" [(ngModel)]="item.contractNumber" name="contractNumber_{{i}}">
-              <label for="contractNumber_{{i}}">Número do Contrato</label>
+            <div class="row center-fields">
+              <div class="input-field col s4">
+                <input id="budgetHeading_{{i}}" type="text" class="validate" [(ngModel)]="item.budgetHeading" name="budgetHeading_{{i}}">
+                <label for="budgetHeading_{{i}}">Rubrica Orçamentária</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="priorityDegree_{{i}}" type="text" class="validate" [(ngModel)]="item.priorityDegree" name="priorityDegree_{{i}}">
+                <label for="priorityDegree_{{i}}">Grau de Prioridade</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="contractNumber_{{i}}" type="text" class="validate" [(ngModel)]="item.contractNumber" name="contractNumber_{{i}}">
+                <label for="contractNumber_{{i}}">Número do Contrato</label>
+              </div>
             </div>
           </div>
         </li>
       </ul>
 
       <button class="btn" (click)="addItem()">Adicionar Item</button>
-</div>
+    </div>
+
   </form>
 </div>

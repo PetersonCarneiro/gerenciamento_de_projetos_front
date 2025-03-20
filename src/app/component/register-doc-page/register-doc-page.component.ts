@@ -12,44 +12,44 @@ export class RegisterDocPageComponent implements OnInit, AfterViewInit {
   @ViewChild('collapsible', { static: false }) collapsible!: ElementRef;
 
   formData = {
-    cod: '',
-    competentUnit: '',
-    requestingUnit: '',
-    investiment: '',
-    codPdm: '',
-    catmat: '',
-    catser: '',
-    codSubClassCnae: '',
-    descriptionCnae: '',
-    object: '',
-    numberSei: '',
-    user: {
-      id: ''
-    },
-    items: [{
+    doc: {
       id: '',
-        item: '',
-        quantityPurchased: '',
-        justification: '',
-        budgetHeading: '',
-        priorityDegree: '',
-        expectedContractStart: new Date(),
-        expectedContractTermination: new Date(),
-        remainingDeadline: 0,
-        totalDurationContract: 0,
-        estimatedValueForTheYear: 0,
-        estimatedContractValue: 0,
-        type: '',
-        contractNumber: 0,
-        contractingMode: '',
-        termsOfReference: '',
-        stateOfTheProcess: '',
-        sustainabilityCriteria: '',
-        slp: '',
-        doc: null
-      }]
-    };
-
+      cod: '',
+      competentUnit: '',
+      requestingUnit: '',
+      investiment: '',
+      codPdm: '',
+      catmat: '',
+      catser: '',
+      codSubClassCnae: '',
+      descriptionCnae: '',
+      object: '',
+      numberSei: '',
+      user: { id: '' },
+      items: [] as Array<{
+        id: string;
+        item: string;
+        quantityPurchased: string | null;
+        justification: string | null;
+        budgetHeading: string | null;
+        priorityDegree: string | null;
+        expectedContractStart: Date | null;
+        expectedContractTermination: Date | null;
+        remainingDeadline: number | null;
+        totalDurationContract: number | null;
+        estimatedValueForTheYear: number | null;
+        estimatedContractValue: number | null;
+        type: string | null;
+        contractNumber: number | null;
+        contractingMode: string | null;
+        termsOfReference: string | null;
+        stateOfTheProcess: string | null;
+        sustainabilityCriteria: string | null;
+        slp: string | null;
+        doc: null;
+      }>
+    }
+  };
 
 
   errorMessage: string = '';
@@ -75,7 +75,7 @@ export class RegisterDocPageComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    if (!this.formData.cod.trim()) {
+    if (!this.formData.doc.cod.trim()) {
       this.errorMessage = 'Formulário possui campos vazios!';
       console.error(this.errorMessage);
       return;
@@ -96,7 +96,7 @@ export class RegisterDocPageComponent implements OnInit, AfterViewInit {
     }
 
     // Garante que o user será enviado corretamente como um objeto com ID
-    this.formData.user = { id: userId };
+    this.formData.doc.user = { id: userId };
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
@@ -116,7 +116,6 @@ export class RegisterDocPageComponent implements OnInit, AfterViewInit {
       });
   }
 
-
   ngAfterViewInit() {
     // Verifique se o collapsible foi inicializado corretamente
     if (this.collapsible?.nativeElement) {
@@ -128,35 +127,33 @@ export class RegisterDocPageComponent implements OnInit, AfterViewInit {
 
   // Função para adicionar um novo item
   addItem() {
-    this.formData.items.push({
+    this.formData.doc.items.push({
       id: '',
       item: '',
-      quantityPurchased: '',
-      justification: '',
-      budgetHeading: '',
-      priorityDegree: '',
-      expectedContractStart: new Date(),
-      expectedContractTermination: new Date(),
-      remainingDeadline: 0,
-      totalDurationContract: 0,
-      estimatedValueForTheYear: 0,
-      estimatedContractValue: 0,
-      type: '',
-      contractNumber: 0,
-      contractingMode: '',
-      termsOfReference: '',
-      stateOfTheProcess: '',
-      sustainabilityCriteria: '',
-      slp: '',
+      quantityPurchased: null,
+      justification: null,
+      budgetHeading: null,
+      priorityDegree: null,
+      expectedContractStart: null,
+      expectedContractTermination: null,
+      remainingDeadline: null,
+      totalDurationContract: null,
+      estimatedValueForTheYear: null,
+      estimatedContractValue: null,
+      type: null,
+      contractNumber: null,
+      contractingMode: null,
+      termsOfReference: null,
+      stateOfTheProcess: null,
+      sustainabilityCriteria: null,
+      slp: null,
       doc: null
     });
   }
 
+
   // Função para remover um item da lista
-removeItem(index: number) {
-  // Remove o item da lista no índice fornecido
-  this.formData.items.splice(index, 1);
-}
-
-
+  removeItem(index: number) {
+    this.formData.doc.items.splice(index, 1);
+  }
 }

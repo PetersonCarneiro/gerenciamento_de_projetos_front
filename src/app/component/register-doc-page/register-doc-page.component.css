@@ -11,6 +11,8 @@
   padding: 40px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  justify-content:center
 }
 
 .item-content {
@@ -44,4 +46,16 @@
   display: flex;
   justify-content: space-between; /* Título à esquerda, botão à direita */
   align-items: center; /* Alinha o botão e título na mesma linha */
+}
+
+.center-fields {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
 }
