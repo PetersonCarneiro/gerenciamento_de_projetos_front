@@ -1,0 +1,45 @@
+
+<ul #collapsible class="collapsible">
+<button class="btn" (click)="addItem()">Adicionar Item</button>
+  <li *ngFor="let item of formDataItem.item ; let i = index">
+    <div class="collapsible-header">
+      Item {{ i + 1 }}
+      <a href="javascript:void(0);" class="btn-flat right" (click)="removeItem(i)">
+        <i class="material-icons">close</i>
+      </a>
+    </div>
+    <div class="collapsible-body">
+      <div class="row center-fields">
+        <div class="input-field col s6">
+          <input id="item_{{i}}" type="text" [(ngModel)]="item.item" name="item_{{i}}">
+          <label [attr.for]="'item_' + i">Item</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="quantity_{{i}}" type="number" [(ngModel)]="item.quantityPurchased" name="quantity_{{i}}">
+          <label [attr.for]="'quantity_' + i">Quantidade</label>
+        </div>
+      </div>
+      <div class="row center-fields">
+        <div class="input-field col s12">
+          <input id="justification_{{i}}" type="text" [(ngModel)]="item.justification" name="justification_{{i}}">
+          <label [attr.for]="'justification_' + i">Justificativa</label>
+        </div>
+      </div>
+      <div class="row center-fields">
+        <div class="input-field col s4">
+          <input id="budgetHeading_{{i}}" type="text" class="validate" [(ngModel)]="item.budgetHeading" name="budgetHeading_{{i}}">
+          <label [attr.for]="'budgetHeading_' + i">Rubrica Orçamentária</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="priorityDegree_{{i}}" type="text" class="validate" [(ngModel)]="item.priorityDegree" name="priorityDegree_{{i}}">
+          <label [attr.for]="'priorityDegree_' + i">Grau de Prioridade</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="contractNumber_{{i}}" type="text" class="validate" [(ngModel)]="item.contractNumber" name="contractNumber_{{i}}">
+          <label [attr.for]="'contractNumber_' + i">Número do Contrato</label>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+

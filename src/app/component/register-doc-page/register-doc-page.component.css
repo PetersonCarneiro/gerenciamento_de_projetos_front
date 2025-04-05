@@ -38,24 +38,17 @@
   margin: 0;
 }
 
-
-.collapsible-header a {
-  margin-left: auto; /* Empurra o botão para a direita */
-}
-.collapsible-header {
-  display: flex;
-  justify-content: space-between; /* Título à esquerda, botão à direita */
-  align-items: center; /* Alinha o botão e título na mesma linha */
-}
-
 .center-fields {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;  /* Alinha as colunas ao centro */
+  align-items: center;      /* Centraliza verticalmente */
   width: 100%;
 }
 
 .row {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
+

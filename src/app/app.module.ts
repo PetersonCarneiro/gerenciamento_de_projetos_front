@@ -11,6 +11,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { RegisterDocPageComponent } from './component/register-doc-page/register-doc-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { RegisterItemPageComponent } from './component/register-item-page/register-item-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     HomePageComponent,
     LoginComponent,
     RegisterComponent,
-    RegisterDocPageComponent
+    RegisterDocPageComponent,
+    RegisterItemPageComponent
   ],
   imports: [
     BrowserModule,

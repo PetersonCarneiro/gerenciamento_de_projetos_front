@@ -35,7 +35,7 @@ export class RegisterComponent {
     // Envia os dados para o backend
     this.http.post('http://localhost:8080/auth/register', this.formData)
       .subscribe({
-        next: response => console.log('Cadastro realizado com sucesso', response),
+        next: response => console.log(alert('Cadastro realizado com sucesso'), response),
         error: error => {
           // Verifica se o erro é um erro de login duplicado
           if (error.status === 500) {
