@@ -6,8 +6,9 @@
     <ul class="right hide-on-med-and-down">
       <li><a routerLink="/">Home</a></li>
       <li><a routerLink="/register-doc">Cadastro</a></li>
-      <li><a href="listagem.html">Listagem</a></li>
+      <li><a href="/list">Listagem</a></li>
       <li><a href="sobre.html">Sobre</a></li>
+
       <li><a href="#" (click)="logout()">Sair</a></li>
     </ul>
   </div>
@@ -17,7 +18,7 @@
 <ul class="sidenav" id="mobile-demo" #mobile *ngIf="isAuthenticated">
   <li><a routerLink="/">Home</a></li>
   <li><a routerLink="/register-doc">Cadastro</a></li>
-  <li><a href="listagem.html">Listagem</a></li>
+  <li><a href="/list">Listagem</a></li>
   <li><a href="sobre.html">Sobre</a></li>
   <li><a href="#" (click)="logout()">Sair</a></li>
 </ul>

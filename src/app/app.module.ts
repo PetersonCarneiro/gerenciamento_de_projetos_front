@@ -12,6 +12,7 @@ import { RegisterDocPageComponent } from './component/register-doc-page/register
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RegisterItemPageComponent } from './component/register-item-page/register-item-page.component';
+import { ListComponent } from './component/list/list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RegisterItemPageComponent } from './component/register-item-page/regist
     LoginComponent,
     RegisterComponent,
     RegisterDocPageComponent,
-    RegisterItemPageComponent
+    RegisterItemPageComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
