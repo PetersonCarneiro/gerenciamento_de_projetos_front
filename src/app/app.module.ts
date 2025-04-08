@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RegisterItemPageComponent } from './component/register-item-page/register-item-page.component';
 import { ListComponent } from './component/list/list.component';
+import { ViewDocumentComponent } from './component/view-document/view-document.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ListComponent } from './component/list/list.component';
     RegisterComponent,
     RegisterDocPageComponent,
     RegisterItemPageComponent,
-    ListComponent
+    ListComponent,
+    ViewDocumentComponent
   ],
   imports: [
     BrowserModule,

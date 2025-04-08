@@ -1,3 +1,4 @@
+import { ViewDocumentComponent } from './component/view-document/view-document.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './component/home-page/home-page.component';
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path:'login',component: LoginComponent},
   {path:'register',component: RegisterComponent},
   {path:'register-doc', component: RegisterDocPageComponent},
-  {path:'list', component: ListComponent}
+  {path:'list', component: ListComponent},
+  {path: 'document/:id', component: ViewDocumentComponent}
 ];
 
 @NgModule({

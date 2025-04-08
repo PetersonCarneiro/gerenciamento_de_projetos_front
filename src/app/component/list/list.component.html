@@ -1,7 +1,26 @@
-<h4>Lista de Documentos</h4>
-<ul class="collection">
-  <li *ngFor="let doc of documents" class="collection-item">
-    Código: {{ doc.cod }} -
-    Unidade Competente: {{doc.competentUnit}}- <a [routerLink]="['/document', doc.competentUnit]">Visualizar</a>
-  </li>
-</ul>
+<div class="doc-container">
+  <div class="doc-content">
+    <h4>Lista de Documentos</h4>
+    <ul class="collection with-header">
+      <li class="collection-header">
+        <div class="row" style="font-weight: bold;">
+          <div class="col s3">Código</div>
+          <div class="col s3">Unidade Competente</div>
+          <div class="col s3">Número SEI</div>
+          <div class="col s3">Ações</div>
+        </div>
+      </li>
+
+      <li *ngFor="let doc of documents" class="collection-item">
+        <div class="row" style="margin-bottom: 0;">
+          <div class="col s3">{{ doc.cod }}</div>
+          <div class="col s3">{{ doc.competentUnit }}</div>
+          <div class="col s3">{{ doc.numberSei }}</div>
+          <div class="col s3">
+            <a [routerLink]="['/document', doc.id]" class="btn-small blue">Visualizar</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,5 +1,4 @@
 import { Component, Input, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as M from 'materialize-css';
 
 @Component({
