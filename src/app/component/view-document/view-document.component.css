@@ -13,3 +13,19 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   justify-content:center
 }
+
+.view-header {
+  display: flex;
+  justify-content: space-between; /* Título à esquerda, botões à direita */
+  align-items: flex-end; /* Alinha na mesma linha verticalmente */
+  padding: 10px;
+}
+
+.view-buttons {
+  display: flex;
+  gap: 10px; /* Espaçamento entre os botões */
+}
+
+.view-title{
+  margin: 0;
+}

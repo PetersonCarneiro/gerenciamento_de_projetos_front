@@ -1,7 +1,13 @@
 
   <div class="doc-container">
     <div class="doc-content">
-      <h4>Detalhes do Documento</h4>
+      <div class="view-header">
+        <h4 class="view-title">Detalhes do Documento</h4>
+        <div class="view-buttons">
+          <a routerLink="/list" class="btn waves-effect waves-light red darken-3">Cancelar</a>
+          <a [routerLink]="['/edit-document', document.id]"class="btn waves-effect waves-light orange darken-3">Editar</a>
+        </div>
+      </div>
       <ul class="collection">
         <li class="collection-item"><strong>Código:</strong> {{ document.cod }}</li>
         <li class="collection-item"><strong>Unidade Competente:</strong> {{ document.competentUnit }}</li>

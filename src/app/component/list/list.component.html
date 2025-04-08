@@ -1,6 +1,11 @@
 <div class="doc-container">
   <div class="doc-content">
-    <h4>Lista de Documentos</h4>
+    <div class="list-header">
+      <h4 class="listtitle">Lista de Processos</h4>
+      <div class="list-buttons">
+        <a routerLink='/register-doc' class="btn waves-effect waves-light green darken-3">Novo Processo</a>
+      </div>
+    </div>
     <ul class="collection with-header">
       <li class="collection-header">
         <div class="row" style="font-weight: bold;">
@@ -17,8 +22,10 @@
           <div class="col s3">{{ doc.competentUnit }}</div>
           <div class="col s3">{{ doc.numberSei }}</div>
           <div class="col s3">
-            <a [routerLink]="['/document', doc.id]" class="btn-small blue">Visualizar</a>
-          </div>
+            <div>
+              <a [routerLink]="['/document', doc.id]" class="btn-small blue darken-3">Visualizar</a>
+            </div>
+        </div>
         </div>
       </li>
     </ul>
