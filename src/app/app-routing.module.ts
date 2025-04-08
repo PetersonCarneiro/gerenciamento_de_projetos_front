@@ -6,6 +6,7 @@ import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { RegisterDocPageComponent } from './component/register-doc-page/register-doc-page.component';
 import { ListComponent } from './component/list/list.component';
+import { EditDocumentComponent } from './component/edit-document/edit-document.component';
 
 const routes: Routes = [
   {path:'',component: HomePageComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'register',component: RegisterComponent},
   {path:'register-doc', component: RegisterDocPageComponent},
   {path:'list', component: ListComponent},
-  {path: 'document/:id', component: ViewDocumentComponent}
+  {path:'document/:id', component: ViewDocumentComponent},
+  {path:'edit-document/:id', component: EditDocumentComponent}
 ];
 
 @NgModule({

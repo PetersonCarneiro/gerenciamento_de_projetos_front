@@ -1,0 +1,32 @@
+.edit-container {
+  display:block;
+  justify-content:center;
+  align-items: center;
+  padding: 20px;
+  text-align: left;
+}
+
+.edit-content {
+  background: #f5f5f5;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  justify-content:center
+}
+
+
+.edit-header {
+  display: flex;
+  justify-content: space-between; /* Título à esquerda, botões à direita */
+  align-items: flex-end; /* Alinha na mesma linha verticalmente */
+  padding: 10px;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 10px; /* Espaçamento entre os botões */
+}
+
+.edit-title{
+  margin: 0;
+}

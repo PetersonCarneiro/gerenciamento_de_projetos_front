@@ -30,7 +30,7 @@ export class LoginComponent {
           localStorage.setItem('userId', response.id); // Acessando diretamente o id
           console.log('Login bem-sucedido');
 
-          this.router.navigate(['/register-doc']).then(() => {
+          this.router.navigate(['/list']).then(() => {
             window.location.reload();
           });
 

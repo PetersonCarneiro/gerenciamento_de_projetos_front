@@ -1,0 +1,37 @@
+<div class="edit-container">
+  <div class="edit-content">
+    <form (ngSubmit)="updateDocument()" *ngIf="document">
+    <div class="edit-header">
+      <h4 class="edit-title">Editar Processo</h4>
+      <div class="edit-buttons">
+        <button type="submit" class="btn green darken-3">Salvar</button>
+        <a [routerLink]="['/document', id]" class="btn grey">Cancelar</a>
+      </div>
+    </div>
+      <div class="input-field">
+        <input type="text" id="cod" [(ngModel)]="document.cod" name="cod" required>
+        <label for="cod" class="active">Código</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="competentUnit" [(ngModel)]="document.competentUnit" name="competentUnit" required>
+        <label for="competentUnit" class="active">Unidade Competente</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="requestingUnit" [(ngModel)]="document.requestingUnit" name="requestingUnit">
+        <label for="requestingUnit" class="active">Unidade Requisitante</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="numberSei" [(ngModel)]="document.numberSei" name="numberSei" required>
+        <label for="numberSei" class="active">Número SEI</label>
+      </div>
+
+      <div class="input-field">
+        <textarea id="object" class="materialize-textarea" [(ngModel)]="document.object" name="object"></textarea>
+        <label for="object" class="active">Objeto</label>
+      </div>
+    </form>
+  </div>
+</div>

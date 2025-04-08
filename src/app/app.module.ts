@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { RegisterItemPageComponent } from './component/register-item-page/register-item-page.component';
 import { ListComponent } from './component/list/list.component';
 import { ViewDocumentComponent } from './component/view-document/view-document.component';
+import { EditDocumentComponent } from './component/edit-document/edit-document.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ViewDocumentComponent } from './component/view-document/view-document.c
     RegisterDocPageComponent,
     RegisterItemPageComponent,
     ListComponent,
-    ViewDocumentComponent
+    ViewDocumentComponent,
+    EditDocumentComponent
   ],
   imports: [
     BrowserModule,

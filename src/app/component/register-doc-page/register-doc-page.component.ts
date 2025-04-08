@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 interface Item {
   item: any;
@@ -51,7 +53,10 @@ export class RegisterDocPageComponent implements OnInit {
   errorMessage: string = '';
   isAuthenticated: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.checkAuthentication();
@@ -73,6 +78,7 @@ export class RegisterDocPageComponent implements OnInit {
 
     if (!this.formData.cod.trim()) {
       this.errorMessage = 'Formulário possui campos vazios!';
+      alert('Formulário possui campos vazios!')
       console.error(this.errorMessage);
       return;
     }
@@ -107,6 +113,8 @@ export class RegisterDocPageComponent implements OnInit {
 
           if (response && response.id) {
             localStorage.setItem('docId', response.id);
+            alert('Documento atualizado com sucesso');
+            this.router.navigate(['/list']);
             this.saveItems(response.id);
           }
         },
