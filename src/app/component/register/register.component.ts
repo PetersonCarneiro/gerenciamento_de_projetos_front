@@ -1,3 +1,4 @@
+import { ServiceService } from './../../service/service.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
@@ -18,7 +19,8 @@ export class RegisterComponent {
   };
   errorMessage: string = '';  // Variável para armazenar a mensagem de erro
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private service: ServiceService ) {}
 
   onSubmit() {
     // Verifica se as senhas não coincidem
@@ -33,7 +35,7 @@ export class RegisterComponent {
     console.log('Função onSubmit() foi chamada!');
 
     // Envia os dados para o backend
-    this.http.post('http://localhost:8080/auth/register', this.formData)
+    this.service.registerUser(this.formData)
       .subscribe({
         next: response => console.log(alert('Cadastro realizado com sucesso'), response),
         error: error => {

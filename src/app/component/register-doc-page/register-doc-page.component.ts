@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServiceService } from 'src/app/service/service.service';
 
 
 interface Item {
@@ -47,15 +48,16 @@ export class RegisterDocPageComponent implements OnInit {
   };
 
   formDataItem: { item: Item[] } = {
-    item: []
+   item: []
   };
 
   errorMessage: string = '';
   isAuthenticated: boolean = false;
 
+
   constructor(
-    private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private service: ServiceService
   ) {}
 
   ngOnInit() {
@@ -65,6 +67,7 @@ export class RegisterDocPageComponent implements OnInit {
   checkAuthentication() {
     const token = localStorage.getItem('jwtToken');
     this.isAuthenticated = !!token;
+
   }
 
   onSubmit() {
@@ -99,21 +102,16 @@ export class RegisterDocPageComponent implements OnInit {
 
     this.formData.user = { id: userId };
 
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    });
-
     console.log('FormData antes de enviar:', this.formData);
 
-    this.http.post<{ id: string }>('http://localhost:8080/document', this.formData, { headers })
+    this.service.createDocument(this.formData)
       .subscribe({
         next: (response) => {
           console.log('Documento salvo:', response);
 
           if (response && response.id) {
             localStorage.setItem('docId', response.id);
-            alert('Documento atualizado com sucesso');
+            alert('Documento Salvo');
             this.router.navigate(['/list']);
             this.saveItems(response.id);
           }
@@ -126,11 +124,6 @@ export class RegisterDocPageComponent implements OnInit {
   }
 
   saveItems(docId: string) {
-    const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
-    });
 
     if (this.formDataItem.item.length === 0) {
       console.warn('Nenhum item para salvar.');
@@ -140,8 +133,8 @@ export class RegisterDocPageComponent implements OnInit {
     this.formDataItem.item.forEach(item => {
       item.documentId = docId;
 
-      this.http.post('http://localhost:8080/items', item, { headers })
-        .subscribe({
+      this.service.createItem(item)
+      .subscribe({
           next: (response) => {
             console.log('Item salvo com sucesso:', response);
           },

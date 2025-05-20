@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ServiceService } from 'src/app/service/service.service';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +11,7 @@ export class ListComponent {
   documents: any[] = [];
   token: string | null = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private service: ServiceService) {}
 
   ngOnInit(): void {
     this.token = localStorage.getItem('jwtToken');
@@ -19,7 +20,7 @@ export class ListComponent {
       'Authorization': `Bearer ${this.token}`
     });
 
-    this.http.get<any[]>('http://localhost:8080/document', { headers })
+    this.service.list()
       .subscribe({
         next: (data) => {
           this.documents = data;

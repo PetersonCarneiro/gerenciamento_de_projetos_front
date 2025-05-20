@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router } from '@angular/router';
+import { ServiceService } from 'src/app/service/service.service';
 
 @Component({
   selector: 'app-edit-document',
@@ -15,23 +16,18 @@ export class EditDocumentComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private service: ServiceService
   ){}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    const token = localStorage.getItem('jwtToken');
 
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    this.http.get<any>(`http://localhost:8080/document/id/${id}`, { headers })
+    this.service.getDocumentById(id)
     .subscribe({
       next: (data) => {
         this.document = data;
-        this.items = data.item; // <-- Aqui você extrai os itens do documento
+        this.items = data.item;
       },
       error: (err) => {
         console.error('Erro ao buscar documento:', err);
@@ -41,13 +37,9 @@ export class EditDocumentComponent implements OnInit {
 
   updateDocument(){
     const id = this.route.snapshot.paramMap.get('id');
-    const token = localStorage.getItem('jwtToken');
 
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    this.http.put(`http://localhost:8080/document/${id}`, this.document, { headers })
+    //this.http.put(`http://localhost:8080/document/${id}`, this.document, { headers })
+    this.service.update(id,this.document)
       .subscribe(() => {
         alert('Documento atualizado com sucesso');
         this.router.navigate(['/list']);

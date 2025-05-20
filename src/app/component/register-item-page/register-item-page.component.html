@@ -1,7 +1,6 @@
-
 <ul #collapsible class="collapsible">
-<button class="btn" (click)="addItem()">Adicionar Item</button>
-  <li *ngFor="let item of formDataItem.item ; let i = index">
+  <button class="btn" (click)="addItem()">Adicionar Item</button>
+  <li *ngFor="let item of formDataItem.item; let i = index">
     <div class="collapsible-header">
       Item {{ i + 1 }}
       <a href="javascript:void(0);" class="btn-flat right" (click)="removeItem(i)">
@@ -16,30 +15,101 @@
         </div>
         <div class="input-field col s6">
           <input id="quantity_{{i}}" type="number" [(ngModel)]="item.quantityPurchased" name="quantity_{{i}}">
-          <label [attr.for]="'quantity_' + i">Quantidade</label>
+          <label [attr.for]="'quantity_' + i">Quantidade Comprada</label>
         </div>
       </div>
+
       <div class="row center-fields">
         <div class="input-field col s12">
           <input id="justification_{{i}}" type="text" [(ngModel)]="item.justification" name="justification_{{i}}">
           <label [attr.for]="'justification_' + i">Justificativa</label>
         </div>
       </div>
+
       <div class="row center-fields">
         <div class="input-field col s4">
-          <input id="budgetHeading_{{i}}" type="text" class="validate" [(ngModel)]="item.budgetHeading" name="budgetHeading_{{i}}">
+          <input id="budgetHeading_{{i}}" type="text" [(ngModel)]="item.budgetHeading" name="budgetHeading_{{i}}">
           <label [attr.for]="'budgetHeading_' + i">Rubrica Orçamentária</label>
         </div>
+
         <div class="input-field col s4">
-          <input id="priorityDegree_{{i}}" type="text" class="validate" [(ngModel)]="item.priorityDegree" name="priorityDegree_{{i}}">
+          <input id="priorityDegree_{{i}}" type="text" [(ngModel)]="item.priorityDegree" name="priorityDegree_{{i}}">
           <label [attr.for]="'priorityDegree_' + i">Grau de Prioridade</label>
         </div>
+
         <div class="input-field col s4">
-          <input id="contractNumber_{{i}}" type="text" class="validate" [(ngModel)]="item.contractNumber" name="contractNumber_{{i}}">
+          <input id="expectedContractStart_{{i}}" type="text" [(ngModel)]="item.expectedContractStart" name="expectedContractStart_{{i}}">
+          <label [attr.for]="'expectedContractStart_' + i">Início Previsto do Contrato</label>
+        </div>
+
+        <div class="input-field col s4">
+          <input id="expectedContractTermination_{{i}}" type="text" [(ngModel)]="item.expectedContractTermination" name="expectedContractTermination_{{i}}">
+          <label [attr.for]="'expectedContractTermination_' + i">Fim Previsto do Contrato</label>
+        </div>
+
+        <div class="input-field col s4">
+          <input id="remainingDeadline_{{i}}" type="text" [(ngModel)]="item.remainingDeadline" name="remainingDeadline_{{i}}">
+          <label [attr.for]="'remainingDeadline_' + i">Prazo Restante</label>
+        </div>
+
+        <div class="input-field col s4">
+          <input id="totalDurationContract_{{i}}" type="text" [(ngModel)]="item.totalDurationContract" name="totalDurationContract_{{i}}">
+          <label [attr.for]="'totalDurationContract_' + i">Duração Total do Contrato</label>
+        </div>
+      </div>
+
+      <div class="row center-fields">
+        <div class="input-field col s6">
+          <input id="estimatedValueYear_{{i}}" type="number" [(ngModel)]="item.estimatedValueYear" name="estimatedValueYear_{{i}}">
+          <label [attr.for]="'estimatedValueYear_' + i">Valor Estimado para o Ano</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="estimatedContractValue_{{i}}" type="number" [(ngModel)]="item.estimatedContractValue" name="estimatedContractValue_{{i}}">
+          <label [attr.for]="'estimatedContractValue_' + i">Valor Estimado do Contrato</label>
+        </div>
+      </div>
+
+      <div class="row center-fields">
+        <div class="input-field col s4">
+          <input id="type_{{i}}" type="text" [(ngModel)]="item.type" name="type_{{i}}">
+          <label [attr.for]="'type_' + i">Tipo</label>
+        </div>
+
+        <div class="input-field col s4">
+          <input id="contractNumber_{{i}}" type="text" [(ngModel)]="item.contractNumber" name="contractNumber_{{i}}">
           <label [attr.for]="'contractNumber_' + i">Número do Contrato</label>
+        </div>
+
+        <div class="input-field col s4">
+          <input id="contractMode_{{i}}" type="text" [(ngModel)]="item.contractMode" name="contractMode_{{i}}">
+          <label [attr.for]="'contractMode_' + i">Modo de Contratação</label>
+        </div>
+      </div>
+
+      <div class="row center-fields">
+        <div class="input-field col s6">
+          <input id="termsReference_{{i}}" type="text" [(ngModel)]="item.termsReference" name="termsReference_{{i}}">
+          <label [attr.for]="'termsReference_' + i">Termos de Referência</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="processState_{{i}}" type="text" [(ngModel)]="item.processState" name="processState_{{i}}">
+          <label [attr.for]="'processState_' + i">Estado do Processo</label>
+        </div>
+      </div>
+
+      <div class="row center-fields">
+        <div class="input-field col s6">
+          <input id="sustainabilityCriteria_{{i}}" type="text" [(ngModel)]="item.sustainabilityCriteria" name="sustainabilityCriteria_{{i}}">
+          <label [attr.for]="'sustainabilityCriteria_' + i">Critérios de Sustentabilidade</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="slp_{{i}}" type="text" [(ngModel)]="item.slp" name="slp_{{i}}">
+          <label [attr.for]="'slp_' + i">SLP</label>
         </div>
       </div>
     </div>
   </li>
 </ul>
-

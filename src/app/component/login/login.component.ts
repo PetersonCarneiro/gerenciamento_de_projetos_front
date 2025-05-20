@@ -1,3 +1,4 @@
+import { ServiceService } from './../../service/service.service';
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -12,7 +13,7 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private service: ServiceService) {}
 
   onLoginSubmit(): void {
     const loginData = {
@@ -20,7 +21,7 @@ export class LoginComponent {
       password: this.password
     };
 
-    this.http.post<{ token: string, id: string }>('http://localhost:8080/auth/login', loginData)
+    this.service.loginUser(loginData)
     .subscribe({
       next: (response) => {
         console.log('Resposta da API:', response); // Verifica a resposta completa

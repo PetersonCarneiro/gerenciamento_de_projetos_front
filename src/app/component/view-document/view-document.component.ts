@@ -1,7 +1,8 @@
 import { Component, OnInit,ElementRef, ViewChild, AfterViewInit, } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import * as M from 'materialize-css';
+import { ServiceService } from 'src/app/service/service.service';
 
 @Component({
   selector: 'app-view-document',
@@ -12,8 +13,16 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
    @ViewChild('collapsible', { static: false }) collapsible!: ElementRef;
   document: any = {};
   items: any[] = [];
+  hashole: string = '';
+  userRole: string ='';
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+
+
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private service: ServiceService,
+  ) {}
 
   ngAfterViewInit(): void {
     if (this.collapsible) {
@@ -26,22 +35,17 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    const token = localStorage.getItem('jwtToken');
-
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
-    this.http.get<any>(`http://localhost:8080/document/id/${id}`, { headers })
-    .subscribe({
-      next: (data) => {
+    this.userRole = this.service.getUserRole();
+    alert(this.userRole)
+    this.service.getDocumentById(id!).subscribe({
+      next:(data) => {
         this.document = data;
-        this.items = data.item; // <-- Aqui você extrai os itens do documento
+        this.items = data.item;
       },
       error: (err) => {
         console.error('Erro ao buscar documento:', err);
       }
     });
-
   }
 }
+
