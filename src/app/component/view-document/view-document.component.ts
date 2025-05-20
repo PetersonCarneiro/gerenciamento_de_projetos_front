@@ -1,6 +1,5 @@
-import { Component, OnInit,ElementRef, ViewChild, AfterViewInit, } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { HttpClient} from '@angular/common/http';
+import { Component, OnInit,ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as M from 'materialize-css';
 import { ServiceService } from 'src/app/service/service.service';
 
@@ -16,11 +15,9 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
   hashole: string = '';
   userRole: string ='';
 
-
-
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient,
+    private router: Router,
     private service: ServiceService,
   ) {}
 
@@ -33,10 +30,9 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+  ngOnInit(): void{
     this.userRole = this.service.getUserRole();
-    alert(this.userRole)
+    const id = this.route.snapshot.paramMap.get('id');
     this.service.getDocumentById(id!).subscribe({
       next:(data) => {
         this.document = data;
@@ -47,5 +43,21 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  deleteDoc(docId: string) {
+    var confirme=confirm("Deseja realmente deletar esse processo ?");
+    if(confirme==true){
+      this.service.delete(docId)
+      .subscribe({
+        next: () => {
+          alert("Documento deletado com sucesso!");
+          this.router.navigate(['/list']);
+        },
+        error: (error) => {
+            console.error('Erro ao salvar item:', error);
+        }
+      });
+    }
+  };
 }
 

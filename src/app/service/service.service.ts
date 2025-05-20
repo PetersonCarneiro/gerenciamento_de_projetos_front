@@ -85,16 +85,13 @@ export class ServiceService {
 
   //update
   update(id:any, document:any): Observable<any>{
-    console.error(this.getHeaders)
-    console.error(document)
     const url = `${this.getBaseUrl()}/document/${id}`;
     return this.http.put<any[]>(url,document,{headers: this.getHeaders()})
-
   }
 
-
-
-
-
-
+  //delete
+  delete(id:any): Observable<any>{
+    const url = `${this.getBaseUrl()}/document/${id}`;
+    return this.http.delete<any[]>(url,{headers: this.getHeaders()})
+  }
 }

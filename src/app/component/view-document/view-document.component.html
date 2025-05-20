@@ -2,14 +2,21 @@
   <div class="doc-container">
     <div class="doc-content">
       <div class="view-header">
-        <h4 class="view-title">Detalhes do Documento</h4>
+        <h4 class="view-title">Detalhes do Processo</h4>
         <div class="view-buttons">
-          <a routerLink="/list" class="btn waves-effect waves-light red darken-3">Cancelar</a>
+          <a routerLink="/list"
+            class="btn waves-effect waves-light blue darken-3">Cancelar
+          </a>
           <a
             *ngIf="userRole === 'ADMIN'"
             [routerLink]="['/edit-document', document.id]"
             class="btn waves-effect waves-light orange darken-3">Editar
           </a>
+          <button
+            *ngIf="userRole === 'ADMIN'"
+            (click)="deleteDoc(document.id)"
+            class="btn waves-effect waves-light red darken-3">Excluir Processo
+        </button>
         </div>
       </div>
       <ul class="collection">
@@ -25,13 +32,19 @@
         <li class="collection-item"><strong>Objeto:</strong> {{ document.object }}</li>
         <li class="collection-item"><strong>Número SEI:</strong> {{ document.numberSei }}</li>
       </ul>
-
-      <h5>Itens</h5>
+      <div class="view-header">
+        <h4 class="view-title">Itens</h4>
+      </div>
       <ul #collapsible class="collapsible">
         <ng-container *ngIf="document.item?.length > 0; else semItens"></ng-container>
         <li *ngFor="let item of document.item">
-          <div class="collapsible-header">
-            <strong>Item:</strong> {{ item.item }}
+          <div class="collapsible-header conteiner-item">
+            <div>
+              <strong>Item:</strong> {{ item.item }}
+            </div>
+            <div>
+              <button type=deleteItem class="btn waves-effect waves-light red darken-3">Excluir Item</button>
+            </div>
           </div>
           <div class="collapsible-body">
             <div><strong>Quantidade Comprada:</strong> {{ item.quantityPurchased }}</div>
