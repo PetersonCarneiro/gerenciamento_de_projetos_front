@@ -10,6 +10,7 @@ import { ServiceService } from 'src/app/service/service.service';
 })
 export class EditDocumentComponent implements OnInit {
   document: any = {};
+  documentOriginal:any = {};
   items: any[] = [];
   id = this.route.snapshot.paramMap.get('id');
 
@@ -28,6 +29,7 @@ export class EditDocumentComponent implements OnInit {
       next: (data) => {
         this.document = data;
         this.items = data.item;
+        this.documentOriginal = JSON.parse(JSON.stringify(data))
       },
       error: (err) => {
         console.error('Erro ao buscar documento:', err);
@@ -38,12 +40,19 @@ export class EditDocumentComponent implements OnInit {
   updateDocument(){
     const id = this.route.snapshot.paramMap.get('id');
 
-    //this.http.put(`http://localhost:8080/document/${id}`, this.document, { headers })
+    const original = JSON.stringify(this.documentOriginal);
+    const current = JSON.stringify(this.document);
+
+    if(original === current ){
+      this.router.navigate(['/list']);
+      console.log("nada alterado");
+    }else{
     this.service.update(id,this.document)
       .subscribe(() => {
         alert('Documento atualizado com sucesso');
         this.router.navigate(['/list']);
       });
+    }
   }
 
 }

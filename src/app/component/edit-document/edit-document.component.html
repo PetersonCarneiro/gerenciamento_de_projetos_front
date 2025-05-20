@@ -1,14 +1,14 @@
 <div class="edit-container">
   <div class="edit-content">
     <form (ngSubmit)="updateDocument()" *ngIf="document">
-    <div class="edit-header">
-      <h4 class="edit-title">Editar Processo</h4>
-      <div class="edit-buttons">
-        <button type="submit" class="btn green darken-3">Salvar</button>
-        <a [routerLink]="['/document', id]" class="btn grey">Cancelar</a>
-
+      <div class="edit-header">
+        <h4 class="edit-title">Editar Processo</h4>
+        <div class="edit-buttons">
+          <a [routerLink]="['/document', id]" class="btn waves-effect waves-light blue darken-3">Cancelar</a>
+          <button type="submit" class="btn waves-effect waves-light green darken-3">Salvar</button>
+        </div>
       </div>
-    </div>
+
       <div class="input-field">
         <input type="text" id="cod" [(ngModel)]="document.cod" name="cod" required>
         <label for="cod" class="active">Código</label>
@@ -22,6 +22,36 @@
       <div class="input-field">
         <input type="text" id="requestingUnit" [(ngModel)]="document.requestingUnit" name="requestingUnit">
         <label for="requestingUnit" class="active">Unidade Requisitante</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="investiment" [(ngModel)]="document.investiment" name="investiment">
+        <label for="investiment" class="active">Investimento</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="codPdm" [(ngModel)]="document.codPdm" name="codPdm">
+        <label for="codPdm" class="active">Código PDM</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="catmat" [(ngModel)]="document.catmat" name="catmat">
+        <label for="catmat" class="active">Catmat</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="catser" [(ngModel)]="document.catser" name="catser">
+        <label for="catser" class="active">Catser</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="codSubClassCnae" [(ngModel)]="document.codSubClassCnae" name="codSubClassCnae">
+        <label for="codSubClassCnae" class="active">Subclasse CNAE</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="descriptionCnae" [(ngModel)]="document.descriptionCnae" name="descriptionCnae">
+        <label for="descriptionCnae" class="active">Descrição CNAE</label>
       </div>
 
       <div class="input-field">
