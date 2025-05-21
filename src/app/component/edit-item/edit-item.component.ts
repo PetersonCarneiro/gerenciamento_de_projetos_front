@@ -21,12 +21,16 @@ export class EditItemComponent implements OnInit {
 
   ngOnInit(): void {
     const itemId = this.route.snapshot.paramMap.get('id');
+    console.log('itemId:', itemId);
+    this.documentId =itemId;
 
     this.service.getItemById(itemId)
     .subscribe({
       next: (data) => {
+        console.log('Data:', data);
         this.document = data;
-        this.item = data.item;
+        this.item = data;
+        this.documentId = data.documentId;
         this.itemOriginal = JSON.parse(JSON.stringify(data.item))
       },
       error: (err) => {
