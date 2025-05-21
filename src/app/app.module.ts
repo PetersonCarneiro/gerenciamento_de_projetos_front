@@ -15,6 +15,7 @@ import { RegisterItemPageComponent } from './component/register-item-page/regist
 import { ListComponent } from './component/list/list.component';
 import { ViewDocumentComponent } from './component/view-document/view-document.component';
 import { EditDocumentComponent } from './component/edit-document/edit-document.component';
+import { EditItemComponent } from './component/edit-item/edit-item.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EditDocumentComponent } from './component/edit-document/edit-document.c
     RegisterItemPageComponent,
     ListComponent,
     ViewDocumentComponent,
-    EditDocumentComponent
+    EditDocumentComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule,

@@ -45,7 +45,7 @@
             <div class="view-buttons">
               <a
                 *ngIf="userRole === 'ADMIN'"
-                [routerLink]="['/edit-item', document.id]"
+                [routerLink]="['/edit-item', item.id]"
                 class="btn waves-effect waves-light orange darken-3">Editar
               </a>
               <button

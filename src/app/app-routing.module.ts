@@ -7,6 +7,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { RegisterDocPageComponent } from './component/register-doc-page/register-doc-page.component';
 import { ListComponent } from './component/list/list.component';
 import { EditDocumentComponent } from './component/edit-document/edit-document.component';
+import { EditItemComponent } from './component/edit-item/edit-item.component';
 
 const routes: Routes = [
   {path:'',component: HomePageComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path:'register-doc', component: RegisterDocPageComponent},
   {path:'list', component: ListComponent},
   {path:'document/:id', component: ViewDocumentComponent},
-  {path:'edit-document/:id', component: EditDocumentComponent}
+  {path:'edit-document/:id', component: EditDocumentComponent},
+  {path:'edit-item/:id',component:EditItemComponent}
 ];
 
 @NgModule({

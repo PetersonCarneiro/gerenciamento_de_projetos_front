@@ -1,0 +1,99 @@
+<div class="edit-container">
+  <div class="edit-content">
+    <form (ngSubmit)="updateItem()" *ngIf="item">
+      <div class="edit-header">
+        <h4 class="edit-title">Editar Item</h4>
+        <div class="edit-buttons">
+          <a [routerLink]="['/document',documentId]" class="btn waves-effect waves-light blue darken-3">Cancelar</a>
+          <button type="submit" class="btn waves-effect waves-light green darken-3">Salvar</button>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="quantityPurchased" [(ngModel)]="item.quantityPurchased" name="quantityPurchased" required>
+        <label for="quantityPurchased" class="active">Quantidade Comprada</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="justification" [(ngModel)]="item.justification" name="justification" required>
+        <label for="justification" class="active">Justificativa</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="budgetHeading" [(ngModel)]="item.budgetHeading" name="budgetHeading">
+        <label for="budgetHeading" class="active">Dotação Orçamentária</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="priorityDegree" [(ngModel)]="item.priorityDegree" name="priorityDegree">
+        <label for="priorityDegree" class="active">Grau de Prioridade</label>
+      </div>
+
+      <div class="input-field">
+        <input type="date" id="expectedContractStart" [(ngModel)]="item.expectedContractStart" name="expectedContractStart">
+        <label for="expectedContractStart" class="active">Início Previsto do Contrato</label>
+      </div>
+
+      <div class="input-field">
+        <input type="date" id="expectedContractTermination" [(ngModel)]="item.expectedContractTermination" name="expectedContractTermination">
+        <label for="expectedContractTermination" class="active">Fim Previsto do Contrato</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="remainingDeadline" [(ngModel)]="item.remainingDeadline" name="remainingDeadline">
+        <label for="remainingDeadline" class="active">Prazo Restante</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="totalDurationContract" [(ngModel)]="item.totalDurationContract" name="totalDurationContract">
+        <label for="totalDurationContract" class="active">Duração Total do Contrato</label>
+      </div>
+
+      <div class="input-field">
+        <input type="number" id="estimatedValueForTheYear" [(ngModel)]="item.estimatedValueForTheYear" name="estimatedValueForTheYear">
+        <label for="estimatedValueForTheYear" class="active">Valor Estimado para o Ano</label>
+      </div>
+
+      <div class="input-field">
+        <input type="number" id="estimatedContractValue" [(ngModel)]="item.estimatedContractValue" name="estimatedContractValue">
+        <label for="estimatedContractValue" class="active">Valor Estimado do Contrato</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="type" [(ngModel)]="item.type" name="type">
+        <label for="type" class="active">Tipo</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="contractNumber" [(ngModel)]="item.contractNumber" name="contractNumber">
+        <label for="contractNumber" class="active">Número do Contrato</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="contractingMode" [(ngModel)]="item.contractingMode" name="contractingMode">
+        <label for="contractingMode" class="active">Modo de Contratação</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="termsOfReference" [(ngModel)]="item.termsOfReference" name="termsOfReference">
+        <label for="termsOfReference" class="active">Termos de Referência</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="stateOfTheProcess" [(ngModel)]="item.stateOfTheProcess" name="stateOfTheProcess">
+        <label for="stateOfTheProcess" class="active">Estado do Processo</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="sustainabilityCriteria" [(ngModel)]="item.sustainabilityCriteria" name="sustainabilityCriteria">
+        <label for="sustainabilityCriteria" class="active">Critérios de Sustentabilidade</label>
+      </div>
+
+      <div class="input-field">
+        <input type="text" id="slp" [(ngModel)]="item.slp" name="slp">
+        <label for="slp" class="active">SLP</label>
+      </div>
+
+    </form>
+  </div>
+</div>

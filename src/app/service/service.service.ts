@@ -101,5 +101,10 @@ export class ServiceService {
     return this.http.delete<any[]>(url,{headers: this.getHeaders()});
   }
 
+  //getItem
+  getItemById(idItem: any): Observable<any>{
+    const url = `${this.getBaseUrl()}/items/${idItem}`;
+    return this.http.get<any>(url,{headers: this.getHeaders()});
+  }
 
 }

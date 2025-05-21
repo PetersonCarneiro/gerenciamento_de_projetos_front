@@ -15,11 +15,13 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
   hashole: string = '';
   userRole: string ='';
 
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: ServiceService,
   ) {}
+
 
   ngAfterViewInit(): void {
     if (this.collapsible) {
