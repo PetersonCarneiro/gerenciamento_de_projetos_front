@@ -45,13 +45,13 @@ export class ServiceService {
   //register-doc-page
   createDocument(data: any): Observable<any>{
     const url = `${this.getBaseUrl()}/document`;
-    return this.http.post<any>(url,data,{headers: this.getHeaders()})
+    return this.http.post<any>(url,data,{headers: this.getHeaders()});
   }
 
   //createItem
   createItem(item:any): Observable<any>{
     const url = `${this.getBaseUrl()}/items`;
-    return this.http.post<any>(url,item,{headers: this.getHeaders()})
+    return this.http.post<any>(url,item,{headers: this.getHeaders()});
   }
 
   //login
@@ -69,13 +69,13 @@ export class ServiceService {
   //list
   list(): Observable<any>{
     const url = `${this.getBaseUrl()}/document`;
-    return this.http.get<any[]>(url,{headers: this.getHeaders()})
+    return this.http.get<any[]>(url,{headers: this.getHeaders()});
   }
 
   //getID
   getID(id:any): Observable<any>{
     const url = `${this.getBaseUrl()}/document/id/${id}`;
-    return this.http.get<any[]>(url,{headers: this.getHeaders()})
+    return this.http.get<any[]>(url,{headers: this.getHeaders()});
   }
     //view-document
   getDocumentById(id:any): Observable<any>{
@@ -86,12 +86,20 @@ export class ServiceService {
   //update
   update(id:any, document:any): Observable<any>{
     const url = `${this.getBaseUrl()}/document/${id}`;
-    return this.http.put<any[]>(url,document,{headers: this.getHeaders()})
+    return this.http.put<any[]>(url,document,{headers: this.getHeaders()});
   }
 
-  //delete
-  delete(id:any): Observable<any>{
+  //delete processos
+  deleteDoc(id:any): Observable<any>{
     const url = `${this.getBaseUrl()}/document/${id}`;
-    return this.http.delete<any[]>(url,{headers: this.getHeaders()})
+    return this.http.delete<any[]>(url,{headers: this.getHeaders()});
   }
+
+  //delete itens
+  deleteItem(id:any):Observable<any>{
+    const url = `${this.getBaseUrl()}/items/${id}`;
+    return this.http.delete<any[]>(url,{headers: this.getHeaders()});
+  }
+
+
 }

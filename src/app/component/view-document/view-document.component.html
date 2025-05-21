@@ -42,8 +42,17 @@
             <div>
               <strong>Item:</strong> {{ item.item }}
             </div>
-            <div>
-              <button type=deleteItem class="btn waves-effect waves-light red darken-3">Excluir Item</button>
+            <div class="view-buttons">
+              <a
+                *ngIf="userRole === 'ADMIN'"
+                [routerLink]="['/edit-item', document.id]"
+                class="btn waves-effect waves-light orange darken-3">Editar
+              </a>
+              <button
+                *ngIf="userRole === 'ADMIN'"
+                (click)="deleteItem(item.id,document.id)"
+                class="btn waves-effect waves-light red darken-3">Excluir Item
+              </button>
             </div>
           </div>
           <div class="collapsible-body">
