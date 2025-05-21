@@ -83,7 +83,7 @@ export class ServiceService {
     return this.http.get<any>(url,{headers: this.getHeaders()});
   }
 
-  //update
+  //update doc
   update(id:any, document:any): Observable<any>{
     const url = `${this.getBaseUrl()}/document/${id}`;
     return this.http.put<any[]>(url,document,{headers: this.getHeaders()});
@@ -95,7 +95,7 @@ export class ServiceService {
     return this.http.delete<any[]>(url,{headers: this.getHeaders()});
   }
 
-  //delete itens
+  //delete item
   deleteItem(id:any):Observable<any>{
     const url = `${this.getBaseUrl()}/items/${id}`;
     return this.http.delete<any[]>(url,{headers: this.getHeaders()});
@@ -105,6 +105,12 @@ export class ServiceService {
   getItemById(idItem: any): Observable<any>{
     const url = `${this.getBaseUrl()}/items/${idItem}`;
     return this.http.get<any>(url,{headers: this.getHeaders()});
+  }
+
+  //update item
+  updateItem(id:any, idDoc:any, item: any): Observable<any>{
+    const url = `${this.getBaseUrl()}/items/${id}/${idDoc}`;
+    return this.http.put<any[]>(url,item,{headers: this.getHeaders()});
   }
 
 }

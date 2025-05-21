@@ -39,8 +39,23 @@ export class EditItemComponent implements OnInit {
     });
   }
 
-  updateItem():void{
+  updateItem(){
+    //pega o id do item
+    const id = this.route.snapshot.paramMap.get('id');
 
+    const original = JSON.stringify(this.itemOriginal);
+    const current = JSON.stringify(this.item);
+
+    if(original === current ){
+      this.router.navigate(['/document/'+this.documentId]);
+      console.log("nada alterado");
+    }else{
+    this.service.updateItem(id, this.documentId, this.item)
+      .subscribe(() => {
+        alert('Documento atualizado com sucesso');
+        this.router.navigate(['/document/'+this.documentId]);
+      });
+    }
   }
 
 }
