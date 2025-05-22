@@ -1,5 +1,5 @@
 .page-footer {
-  position: fixed;
+  position: static;
   bottom: 0;
   width: 100%;
   padding: 10px; /* Espaçamento interno do rodapé (opcional) */

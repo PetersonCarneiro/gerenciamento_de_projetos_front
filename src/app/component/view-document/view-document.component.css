@@ -4,6 +4,7 @@
   align-items: center;
   padding: 20px;
   text-align: left;
+  min-height: 100vh;
 }
 
 .doc-content {
