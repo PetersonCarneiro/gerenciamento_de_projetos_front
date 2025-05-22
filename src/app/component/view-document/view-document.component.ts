@@ -1,4 +1,4 @@
-import { Component, OnInit,ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as M from 'materialize-css';
 import { ServiceService } from 'src/app/service/service.service';
@@ -9,19 +9,40 @@ import { ServiceService } from 'src/app/service/service.service';
   styleUrls: ['./view-document.component.css']
 })
 export class ViewDocumentComponent implements OnInit, AfterViewInit {
-   @ViewChild('collapsible', { static: false }) collapsible!: ElementRef;
+  @ViewChild('collapsible', { static: false }) collapsible!: ElementRef;
+
   document: any = {};
   items: any[] = [];
-  hashole: string = '';
-  userRole: string ='';
+  userRole: string = '';
+  errorMessage: string = '';
 
+
+  newItem = {
+    item: '',
+    quantityPurchased: null,
+    justification: '',
+    budgetHeading: '',
+    priorityDegree: '',
+    expectedContractStart: '',
+    expectedContractTermination: '',
+    remainingDeadline: '',
+    totalDurationContract: '',
+    estimatedValueForTheYear: null,
+    estimatedContractValue: null,
+    type: '',
+    contractNumber: '',
+    contractingMode: '',
+    termsOfReference: '',
+    stateOfTheProcess: '',
+    sustainabilityCriteria: '',
+    slp: ''
+  };
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: ServiceService,
+    private service: ServiceService
   ) {}
-
 
   ngAfterViewInit(): void {
     if (this.collapsible) {
@@ -32,53 +53,22 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.userRole = this.service.getUserRole();
     const id = this.route.snapshot.paramMap.get('id');
 
-    if(!id){
-      console.error('Id do documento não encontrado')
+    if (!id) {
+      console.error('Id do documento não encontrado');
       this.router.navigate(['/list']);
       return;
     }
-    this.loadDocument(id)
+
+    this.loadDocument(id);
   }
 
-  deleteDoc(docId: string) {
-    var confirme=confirm("Deseja realmente deletar esse processo?");
-    if(confirme){
-      this.service.deleteDoc(docId)
-      .subscribe({
-        next: () => {
-          alert("Documento deletado com sucesso!");
-          this.router.navigate(['/list']);
-        },
-        error: (error) => {
-            console.error('Erro ao salvar processo:', error);
-        }
-      });
-    }
-  };
-
-  deleteItem(itemId: string, docId: string){
-    var comfirme=confirm("Deseja reamente deletar esse item?")
-    if(comfirme){
-      this.service.deleteItem(itemId)
-        .subscribe({
-          next: () => {
-            alert("Item deletado com sucesso!");
-            this.loadDocument(docId);
-          },
-          error: (error) => {
-            console.error("Erro ao salvar item:",error )
-          }
-        });
-    }
-  }
-
-  loadDocument(docId: string){
+  loadDocument(docId: string): void {
     this.service.getDocumentById(docId).subscribe({
-      next:(data) => {
+      next: (data) => {
         this.document = data;
         this.items = data.item;
       },
@@ -87,5 +77,60 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
       }
     });
   }
-}
 
+  deleteDoc(docId: string): void {
+    const confirme = confirm("Deseja realmente deletar esse processo?");
+    if (confirme) {
+      this.service.deleteDoc(docId).subscribe({
+        next: () => {
+          alert("Documento deletado com sucesso!");
+          this.router.navigate(['/list']);
+        },
+        error: (error) => {
+          console.error('Erro ao deletar processo:', error);
+        }
+      });
+    }
+  }
+
+  deleteItem(itemId: string, docId: string): void {
+    const confirme = confirm("Deseja realmente deletar esse item?");
+    if (confirme) {
+      this.service.deleteItem(itemId).subscribe({
+        next: () => {
+          alert("Item deletado com sucesso!");
+          this.loadDocument(docId);
+        },
+        error: (error) => {
+          console.error("Erro ao deletar item:", error);
+        }
+      });
+    }
+  }
+
+  addItem(): void {
+  const docId = this.document._id || localStorage.getItem('docId');
+
+    if (!docId) {
+      this.errorMessage = 'Erro: Nenhum documento associado!';
+      return;
+    }
+
+    const itemToAdd = { ...this.newItem, documentId: docId };
+
+    // Adiciona na lista local
+    this.items.push(itemToAdd);
+
+    // Persiste via API
+    this.service.createItem(itemToAdd).subscribe({
+      next: () => {
+        //alert('Item adicionado com sucesso!');
+        this.loadDocument(docId);
+      },
+      error: (err) => {
+        console.error('Erro ao adicionar item:', err);
+      }
+    });
+
+  }
+}

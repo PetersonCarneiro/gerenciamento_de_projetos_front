@@ -9,7 +9,8 @@ import * as M from 'materialize-css';
 
 export class RegisterItemPageComponent implements AfterViewInit {
   @ViewChild('collapsible', { static: false }) collapsible!: ElementRef;
-  @Input() formDataItem: any = {
+  @Input()
+  formDataItem: any = {
     item: [] // Inicializa o array de items, caso não seja passado como input
   };
   errorMessage: string = '';

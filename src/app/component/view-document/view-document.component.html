@@ -35,7 +35,9 @@
       <div class="view-header">
         <h4 class="view-title">Itens</h4>
       </div>
+
       <ul #collapsible class="collapsible">
+        <button class="btn" (click)="addItem()">Adicionar Item</button>
         <ng-container *ngIf="document.item?.length > 0; else semItens"></ng-container>
         <li *ngFor="let item of document.item">
           <div class="collapsible-header conteiner-item">
