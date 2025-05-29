@@ -16,7 +16,6 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
   userRole: string = '';
   errorMessage: string = '';
 
-
   newItem = {
     item: '',
     quantityPurchased: null,
@@ -44,19 +43,8 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
     private service: ServiceService
   ) {}
 
-  ngAfterViewInit(): void {
-    if (this.collapsible) {
-      M.Collapsible.init(this.collapsible.nativeElement, {});
-      console.log("Collapsible inicializado!");
-    } else {
-      console.error("Elemento collapsible não encontrado!");
-    }
-  }
-
   ngOnInit(): void {
-    this.userRole = this.service.getUserRole();
     const id = this.route.snapshot.paramMap.get('id');
-
     if (!id) {
       console.error('Id do documento não encontrado');
       this.router.navigate(['/list']);
@@ -64,13 +52,23 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
     }
 
     this.loadDocument(id);
+    this.userRole = this.service.getUserRole();
+  }
+
+  ngAfterViewInit(): void {
+    if (this.collapsible) {
+      M.Collapsible.init(this.collapsible.nativeElement);
+      console.log('Collapsible inicializado!');
+    } else {
+      console.error('Elemento collapsible não encontrado!');
+    }
   }
 
   loadDocument(docId: string): void {
     this.service.getDocumentById(docId).subscribe({
       next: (data) => {
         this.document = data;
-        this.items = data.item;
+        this.items = data.item || [];
       },
       error: (err) => {
         console.error('Erro ao buscar documento:', err);
@@ -79,11 +77,10 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
   }
 
   deleteDoc(docId: string): void {
-    const confirme = confirm("Deseja realmente deletar esse processo?");
-    if (confirme) {
+    if (confirm('Deseja realmente deletar esse processo?')) {
       this.service.deleteDoc(docId).subscribe({
         next: () => {
-          alert("Documento deletado com sucesso!");
+          alert('Documento deletado com sucesso!');
           this.router.navigate(['/list']);
         },
         error: (error) => {
@@ -94,37 +91,34 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
   }
 
   deleteItem(itemId: string, docId: string): void {
-    const confirme = confirm("Deseja realmente deletar esse item?");
-    if (confirme) {
+    if (confirm('Deseja realmente deletar esse item?')) {
       this.service.deleteItem(itemId).subscribe({
         next: () => {
-          alert("Item deletado com sucesso!");
+          alert('Item deletado com sucesso!');
+          this.items = this.items.filter(item => item.id !== itemId);
           this.loadDocument(docId);
         },
         error: (error) => {
-          console.error("Erro ao deletar item:", error);
+          console.error('Erro ao deletar item:', error);
         }
       });
     }
   }
 
-  addItem(): void {
-  const docId = this.document._id || localStorage.getItem('docId');
-
+  duplicateItem(item: any): void {
+    const docId = this.document?.id || localStorage.getItem('docId');
     if (!docId) {
       this.errorMessage = 'Erro: Nenhum documento associado!';
       return;
     }
 
-    const itemToAdd = { ...this.newItem, documentId: docId };
+    const itemClone = { ...item };
+    delete itemClone.id;
+    itemClone.documentId = docId;
 
-    // Adiciona na lista local
-    this.items.push(itemToAdd);
-
-    // Persiste via API
-    this.service.createItem(itemToAdd).subscribe({
+    this.items.push(itemClone);
+    this.service.createItem(itemClone).subscribe({
       next: () => {
-        //alert('Item adicionado com sucesso!');
         this.loadDocument(docId);
       },
       error: (err) => {
@@ -132,5 +126,27 @@ export class ViewDocumentComponent implements OnInit, AfterViewInit {
       }
     });
 
+
+  }
+
+  addItem(): void {
+    const docId = this.document.id || localStorage.getItem('docId');
+    if (!docId) {
+      this.errorMessage = 'Erro: Nenhum documento associado!';
+      return;
+    }
+
+    const itemToAdd = { ...this.newItem, documentId: docId };
+
+    this.items.push(itemToAdd);
+
+    this.service.createItem(itemToAdd).subscribe({
+      next: () => {
+        this.loadDocument(docId);
+      },
+      error: (err) => {
+        console.error('Erro ao adicionar item:', err);
+      }
+    });
   }
 }

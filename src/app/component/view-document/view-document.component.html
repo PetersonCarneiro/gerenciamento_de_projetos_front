@@ -1,86 +1,68 @@
-
-  <div class="doc-container">
-    <div class="doc-content">
-      <div class="view-header">
-        <h4 class="view-title">Detalhes do Processo</h4>
-        <div class="view-buttons">
-          <a routerLink="/list"
-            class="btn waves-effect waves-light blue darken-3">Cancelar
-          </a>
-          <a
-            *ngIf="userRole === 'ADMIN'"
-            [routerLink]="['/edit-document', document.id]"
-            class="btn waves-effect waves-light orange darken-3">Editar
-          </a>
-          <button
-            *ngIf="userRole === 'ADMIN'"
-            (click)="deleteDoc(document.id)"
-            class="btn waves-effect waves-light red darken-3">Excluir Processo
-        </button>
-        </div>
+<div class="doc-container">
+  <div class="doc-content">
+    <div class="view-header">
+      <h4 class="view-title">Detalhes do Processo</h4>
+      <div class="view-buttons">
+        <a routerLink="/list" class="btn waves-effect waves-light blue darken-3">Cancelar</a>
+        <a *ngIf="userRole === 'ADMIN'" [routerLink]="['/edit-document', document.id]" class="btn waves-effect waves-light orange darken-3">Editar</a>
+        <button *ngIf="userRole === 'ADMIN'" (click)="deleteDoc(document.id)" class="btn waves-effect waves-light red darken-3">Excluir Processo</button>
       </div>
-      <ul class="collection">
-        <li class="collection-item"><strong>Código:</strong> {{ document.cod }}</li>
-        <li class="collection-item"><strong>Unidade Competente:</strong> {{ document.competentUnit }}</li>
-        <li class="collection-item"><strong>Unidade Requisitante:</strong> {{ document.requestingUnit }}</li>
-        <li class="collection-item"><strong>Investimento:</strong> {{ document.investiment }}</li>
-        <li class="collection-item"><strong>Código PDM:</strong> {{ document.codPdm }}</li>
-        <li class="collection-item"><strong>Catmat:</strong> {{ document.catmat }}</li>
-        <li class="collection-item"><strong>Catser:</strong> {{ document.catser }}</li>
-        <li class="collection-item"><strong>Subclasse CNAE:</strong> {{ document.codSubClassCnae }}</li>
-        <li class="collection-item"><strong>Descrição CNAE:</strong> {{ document.descriptionCnae }}</li>
-        <li class="collection-item"><strong>Objeto:</strong> {{ document.object }}</li>
-        <li class="collection-item"><strong>Número SEI:</strong> {{ document.numberSei }}</li>
-      </ul>
-      <div class="view-header">
-        <h4 class="view-title">Itens</h4>
-      </div>
-
-      <ul #collapsible class="collapsible">
-        <button class="btn" (click)="addItem()">Adicionar Item</button>
-        <ng-container *ngIf="document.item?.length > 0; else semItens"></ng-container>
-        <li *ngFor="let item of document.item">
-          <div class="collapsible-header conteiner-item">
-            <div>
-              <strong>Item:</strong> {{ item.item }}
-            </div>
-            <div class="view-buttons">
-              <a
-                *ngIf="userRole === 'ADMIN'"
-                [routerLink]="['/edit-item', item.id]"
-                class="btn waves-effect waves-light orange darken-3">Editar
-              </a>
-              <button
-                *ngIf="userRole === 'ADMIN'"
-                (click)="deleteItem(item.id,document.id)"
-                class="btn waves-effect waves-light red darken-3">Excluir Item
-              </button>
-            </div>
-          </div>
-          <div class="collapsible-body">
-            <div><strong>Quantidade Comprada:</strong> {{ item.quantityPurchased }}</div>
-            <div><strong>Justificativa:</strong> {{ item.justification }}</div>
-            <div><strong>Dotação Orçamentária:</strong> {{ item.budgetHeading }}</div>
-            <div><strong>Grau de Prioridade:</strong> {{ item.priorityDegree }}</div>
-            <div><strong>Início Previsto do Contrato:</strong> {{ item.expectedContractStart }}</div>
-            <div><strong>Fim Previsto do Contrato:</strong> {{ item.expectedContractTermination }}</div>
-            <div><strong>Prazo Restante:</strong> {{ item.remainingDeadline }}</div>
-            <div><strong>Duração Total do Contrato:</strong> {{ item.totalDurationContract }}</div>
-            <div><strong>Valor Estimado para o Ano:</strong> {{ item.estimatedValueForTheYear }}</div>
-            <div><strong>Valor Estimado do Contrato:</strong> {{ item.estimatedContractValue }}</div>
-            <div><strong>Tipo:</strong> {{ item.type }}</div>
-            <div><strong>Número do Contrato:</strong> {{ item.contractNumber }}</div>
-            <div><strong>Modo de Contratação:</strong> {{ item.contractingMode }}</div>
-            <div><strong>Termos de Referência:</strong> {{ item.termsOfReference }}</div>
-            <div><strong>Estado do Processo:</strong> {{ item.stateOfTheProcess }}</div>
-            <div><strong>Critérios de Sustentabilidade:</strong> {{ item.sustainabilityCriteria }}</div>
-            <div><strong>SLP:</strong> {{ item.slp }}</div>
-          </div>
-        </li>
-      </ul>
-
-      <ng-template #semItens>
-        <p><em>Nenhum item cadastrado.</em></p>
-      </ng-template>
     </div>
+
+    <ul class="collection">
+      <li class="collection-item"><strong>Código:</strong> {{ document.cod }}</li>
+      <li class="collection-item"><strong>Unidade Competente:</strong> {{ document.competentUnit }}</li>
+      <li class="collection-item"><strong>Unidade Requisitante:</strong> {{ document.requestingUnit }}</li>
+      <li class="collection-item"><strong>Investimento:</strong> {{ document.investiment }}</li>
+      <li class="collection-item"><strong>Código PDM:</strong> {{ document.codPdm }}</li>
+      <li class="collection-item"><strong>Catmat:</strong> {{ document.catmat }}</li>
+      <li class="collection-item"><strong>Catser:</strong> {{ document.catser }}</li>
+      <li class="collection-item"><strong>Subclasse CNAE:</strong> {{ document.codSubClassCnae }}</li>
+      <li class="collection-item"><strong>Descrição CNAE:</strong> {{ document.descriptionCnae }}</li>
+      <li class="collection-item"><strong>Objeto:</strong> {{ document.object }}</li>
+      <li class="collection-item"><strong>Número SEI:</strong> {{ document.numberSei }}</li>
+    </ul>
+
+    <div class="view-header">
+      <h4 class="view-title">Itens</h4>
+    </div>
+
+    <button class="btn" (click)="addItem()">Adicionar Item</button>
+
+    <ul #collapsible class="collapsible">
+      <li *ngFor="let item of document.item">
+        <div class="collapsible-header conteiner-item">
+          <div><strong>Item:</strong> {{ item.item }}</div>
+          <div class="view-buttons">
+            <button *ngIf="userRole === 'ADMIN'" (click)="duplicateItem(item)" class="btn waves-effect waves-light green darken-3">Duplicar Item</button>
+            <a *ngIf="userRole === 'ADMIN'" [routerLink]="['/edit-item', item.id]" class="btn waves-effect waves-light orange darken-3">Editar</a>
+            <button *ngIf="userRole === 'ADMIN'" (click)="deleteItem(item.id, document.id)" class="btn waves-effect waves-light red darken-3">Excluir Item</button>
+          </div>
+        </div>
+        <div class="collapsible-body">
+          <div><strong>Quantidade Comprada:</strong> {{ item.quantityPurchased }}</div>
+          <div><strong>Justificativa:</strong> {{ item.justification }}</div>
+          <div><strong>Dotação Orçamentária:</strong> {{ item.budgetHeading }}</div>
+          <div><strong>Grau de Prioridade:</strong> {{ item.priorityDegree }}</div>
+          <div><strong>Início Previsto do Contrato:</strong> {{ item.expectedContractStart }}</div>
+          <div><strong>Fim Previsto do Contrato:</strong> {{ item.expectedContractTermination }}</div>
+          <div><strong>Prazo Restante:</strong> {{ item.remainingDeadline }}</div>
+          <div><strong>Duração Total do Contrato:</strong> {{ item.totalDurationContract }}</div>
+          <div><strong>Valor Estimado para o Ano:</strong> {{ item.estimatedValueForTheYear }}</div>
+          <div><strong>Valor Estimado do Contrato:</strong> {{ item.estimatedContractValue }}</div>
+          <div><strong>Tipo:</strong> {{ item.type }}</div>
+          <div><strong>Número do Contrato:</strong> {{ item.contractNumber }}</div>
+          <div><strong>Modo de Contratação:</strong> {{ item.contractingMode }}</div>
+          <div><strong>Termos de Referência:</strong> {{ item.termsOfReference }}</div>
+          <div><strong>Estado do Processo:</strong> {{ item.stateOfTheProcess }}</div>
+          <div><strong>Critérios de Sustentabilidade:</strong> {{ item.sustainabilityCriteria }}</div>
+          <div><strong>SLP:</strong> {{ item.slp }}</div>
+        </div>
+      </li>
+
+      <li *ngIf="!document.item || document.item.length === 0">
+        <p><em>Nenhum item cadastrado.</em></p>
+      </li>
+    </ul>
   </div>
+</div>
